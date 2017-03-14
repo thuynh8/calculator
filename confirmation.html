@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="https://use.fontawesome.com/409e734741.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+    <nav>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pageNavbar">
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img class="img-responsive" src="images/topbanner1.jpg" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="pageNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html" class="hvr-underline-reveal">Home</a></li>
+                        <li><a href="quote.html" class="hvr-underline-reveal">Get Quote</a></li>
+                        <li><a href="qualification.html" class="hvr-underline-reveal">Qualification</a></li>
+                        <li><a href="loan-application.html" class="hvr-underline-reveal">Apply</a></li>
+                        <li><a href="contact.html" class="hvr-underline-reveal">Contact</a></li>
+                    </ul>
+                </div>
+              </div>
+         </div>
+    </nav>
+
+    <div class="container" id="confirm-page">
+        <h1 class="text-success">Message Sent</h1>
+        <p>
+            Thank you for contacting us. Your message has been sent. We will get in touch with you as soon as possible.
+        </p>
+        <p>
+            <a href="index.html">Click Here</a> to go back to the main page.
+        </p>
+    </div>
+
+    <!-- Contact info section and footer -->
+    <div class="jumbotron" id="contactinfo">
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Contact Us</h4>
+                <p>
+                     <i class="fa fa-phone"> Phone: (714) 222-2229</i><br />
+                     <i class="fa fa-phone"> Phone: (714) 890-9000</i><br />
+                     <i class="fa fa-fax"> Fax: (714) 895-2220</i>
+                     <i class="fa fa-envelope-o"> adrienne.nguyen@tdlendinginc.com</i>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h4>Locations</h4>
+                <p>
+                    TD Lending Inc.<br />
+                    13833 Beach Boulevard,
+                     Westminster, California CA 92683
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h4>About Us</h4>
+                <p>
+                    TD Lending Inc is your first choice for your real estate needs, whether you're making your first home purchase or refinancing an existing mortgage. We offer the best mortgage solutions for real estate investors. Grow your real estate portfolio with us. Fast, simple process. Competitive rates.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h4>Go to</h4>
+                <p>
+                    <a href="index.html">Home</a>
+                    <a href="quote.html">Get Quote</a>
+                    <a href="qualification.html">Qualification</a>
+                    <a href="loan-application.html">Apply</a>
+                    <a href="contact.html">Contact</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    Copyright <i class="fa fa-copyright"></i> 2017 TD Lending INC
+                </div>
+                <div class="col-md-6 text-right">
+                    <i class="fa fa-facebook-square fa-2x" style="color:#3b5998"></i>
+                    <i class="fa fa-twitter-square fa-2x" style="color:skyblue"></i>
+                    <i class="fa fa-google-plus-square fa-2x" style="color:red"></i>
+                    <i class="fa fa-linkedin-square fa-2x" style="color:#3b5998"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- autoNumeric.js -->
+    <script src="https://cdn.jsdelivr.net/autonumeric/2.0.0/autoNumeric.min.js"></script>
+    <!-- mask.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#phone').mask('(000) 000-0000');
+            $('#loanamount').autoNumeric('init');
+            $('#propertyvalue').autoNumeric('init');
+        });
+    </script>
+</body>
+</html>
