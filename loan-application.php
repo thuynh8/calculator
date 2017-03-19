@@ -71,30 +71,30 @@ $pdf->SetXY($x + 135, $y + 38);
 $pdf->MultiCell(54.5, 7, $martialDisplay, 1, 1);
 
 $ss = $_GET["ss"];
-$ssDisplay = "Social Security\n" . $ss;
+$ssDisplay = "Social Security\n" . $ss . " ";
 $pdf->MultiCell(45, 7, $ssDisplay, 1, 1);
 $citizenship = $_GET["citizenship"];
 $citizenshipDisplay = "Citizenship\n" . $citizenship;
 $pdf->SetXY($x + 45, $y + 52);
 $pdf->MultiCell(45, 7, $citizenshipDisplay, 1, 1);
 $dob = $_GET["dob"];
-$dobDisplay = "Date of Birth\n" . $dob;
+$dobDisplay = "Date of Birth\n" . $dob . " ";
 $pdf->SetXY($x + 90, $y + 52);
 $pdf->MultiCell(45, 7, $dobDisplay, 1, 1);
 $score = $_GET["creditscore"];
-$scoreDisplay = "Credit Score\n" . $score;
+$scoreDisplay = "Credit Score\n" . $score . " ";
 $pdf->SetXY($x + 135, $y + 52);
 $pdf->MultiCell(54.5, 7, $scoreDisplay, 1, 1);
 
 $bankruptcy = $_GET["bankruptcy"];
-$bankruptcyDisplay = "Bankruptcy/Foreclosure/Shortsale?\n" . $bankruptcy;
+$bankruptcyDisplay = "Bankruptcy/Foreclosure/Shortsale?\n" . $bankruptcy . " ";
 $pdf->MultiCell(90, 7, $bankruptcyDisplay, 1, 1);
 $phone = $_GET["phone"];
-$phoneDisplay = "Phone\n" . $phone;
+$phoneDisplay = "Phone\n" . $phone . " ";
 $pdf->SetXY($x + 90, $y + 66);
 $pdf->MultiCell(45, 7, $phoneDisplay, 1, 1);
 $email = $_GET["email"];
-$emailDisplay = "Email\n" . $email;
+$emailDisplay = "Email\n" . $email . " ";
 $pdf->SetXY($x + 135, $y + 66);
 $pdf->MultiCell(54.5, 7, $emailDisplay, 1, 1);
 
@@ -367,8 +367,8 @@ $commentDisplay = "Borrower's Message to TD Lending\n" . $comment . " ";
 $pdf->MultiCell(189.5, 7, $commentDisplay, 1, 1);
 
 // Code below to email attachment
-$to = "tylerhuynh100@gmail.com";
-$from = "tan_inca@yahoo.com";
+$to = "tylerhuynh100@gmail.com, thomas_dao@yahoo.com";
+$from = "contact@iloannow.com";
 $subject = "New Loan Application Submission";
 $message = "<p>New loan application has been submitted. Please see attachment.</p>";
 
@@ -411,6 +411,6 @@ $body .= "--".$separator."--";
 
 // send message
 mail($to, $subject, $body, $headers);
-header('Location: loan-confirm.html');
+header('Location: templates/loan-confirm.html');
 //$pdf->Output();
 ?>

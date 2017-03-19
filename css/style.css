@@ -1,27 +1,60 @@
-html body {
-    font-family: 'Roboto', sans-serif;
+body, html {
+    height: 100%;
 }
 
-html, body {
-    height: 100%;
+h1 h2 h3 h4, ul > li {
+    font-family: 'Roboto Slab', serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
     padding-top: 50px;
 }
 
-#section1 {
-    height: 80%;
-
-}
-
 .home-background {
-    background: url("../images/home.jpg") no-repeat center center fixed;
-    background-size: auto 100%;
+    background: url("../images/p1.jpg");
+    min-height: 100%;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+}
+
+#banner {
+    max-width: 80%;
+    display: inline-block;
+}
+
+#ad {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.navbar-brand p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+text-decoration = max-height
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    object-fit: cover;
+    max-height: 400px;
+    min-width: 100%;
 }
 
 .panel-transparent {
@@ -51,7 +84,6 @@ body {
 .navbar-default {
     background-color: #343434;
     font-size: 18px;
-    border-bottom: 1px solid white;
 }
 
 .navbar-default .navbar-brand {
@@ -65,38 +97,6 @@ body {
 
 .navbar-default .navbar-nav > li > a:hover {
     color: lightgray;
-}
-
-.hvr-underline-from-center {
-        display: inline-block;
-        vertical-align: middle;
-        -webkit-transform: perspective(1px) translateZ(0);
-        transform: perspective(1px) translateZ(0);
-        box-shadow: 0 0 1px transparent;
-        position: relative;
-        overflow: hidden;
-}
-
-.hvr-underline-from-center:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        left: 50%;
-        right: 50%;
-        bottom: 0;
-        background:	#646e83;
-        height: 4px;
-        -webkit-transition-property: left, right;
-        transition-property: left, right;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-}
-
-.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
-        left: 0;
-        right: 0;
 }
 
 /* Underline Reveal */
@@ -116,7 +116,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #a0333a;
+  background: lightgray;
   height: 4px;
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
@@ -167,6 +167,16 @@ h3, label {
     color: dimgray;
 }
 
+#qualification {
+    color: #66676d;
+}
+
+#qualification label {
+    text-align: right;
+    color: #4b4b4b;
+    font-size: 16px;
+}
+
 .jumbotron {
     padding-top: 5px;
 }
@@ -177,8 +187,7 @@ h3, label {
 }
 
 .btn-container {
-    text-align: center;
-    padding-top: 7px;
+    padding-top: 24px;
 }
 
 .red {
@@ -186,11 +195,52 @@ h3, label {
 }
 
 .btn-quote {
-    font-size: 18px;
-    width: 100%;
-    height: 50px;
-    background: orangered;
-    color: white;
+    font-size: 24px;
+    margin-top: 30px;
+    border: 2px solid;
+    border-radius: 10px;
+    width: 30%;
+    height: 60px;
+}
+
+@media all and (max-width: 991px) {
+    .btn-quote {
+        width: 100%;
+        display: block;
+    }
+    #qualification label {
+        font-size: 14px;
+        padding: 5px;
+    }
+    .col-container .col-md-3 .card {
+        margin-top: 15px;
+    }
+    .card img {
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .text-alignment {
+        text-align: center;
+    }
+    .copyright-alignment {
+        text-align: center;
+    }
+    #qualify-form .input-group, #qualify-form .form-group {
+        margin: 0;
+    }
+    #welcome {
+        font-size: 16px;
+        font-weight: 800;
+    }
+}
+
+.contact-info i {
+    margin-bottom: 5px;
 }
 
 .pm-table {
@@ -273,6 +323,10 @@ canvas {
     margin-top: 20px;
 }
 
+.highlight {
+    color: orangered;
+}
+
 /* Change the color of the striped tables */
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
@@ -333,11 +387,6 @@ a.selectedLink:hover {
     font-size: 18px;
 }
 
-.text-orange {
-    color: rgb(228, 107, 19);
-    font-weight: 500;
-}
-
 #result {
     margin-bottom: 8px;
     margin-top: 8px;
@@ -359,7 +408,7 @@ a.selectedLink:hover {
 }
 
 .heading-style3 {
-    color: orangered;
+    color: #2e3d49;
     font-size: 24px;
     font-weight: 800;
     margin-top: 20px;
@@ -374,6 +423,7 @@ a.selectedLink:hover {
 
 .font-style1 {
     font-size: 18px;
+    font-weight: 800;
 }
 
 footer {
@@ -385,6 +435,7 @@ footer {
 
 #about {
     margin-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 #contactinfo {
@@ -412,4 +463,190 @@ footer {
 #confirm-page {
     height: 50%;
     padding-top: 20px;
+}
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: dimgray; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+/*Bootstrap button outline override*/
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+#getquote {
+    font-weight: 800;
+}
+
+#btn-extra-options {
+    display: block;
+}
+
+#btn1 {
+    height: 50px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+#map {
+    width: 100%;
+    height: 300px
+}
+
+.vertical-menu {
+    width: 100%; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4b9ddc; /* Add a green color to the "active/current" link */
+    color: white;
+}
+
+.tool-heading {
+    border-bottom: 1px dotted lightgray;
+}
+
+#goto a {
+    color: white;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding-bottom: 20px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.card-container {
+    padding: 2px 16px;
+}
+
+.card-heading {
+    background: #F2994A; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #F2994A , #F2C94C); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #F2994A , #F2C94C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 15px;
+    margin-left: -13px;
+    margin-right: -13px;
+    margin-bottom: 10px;
+}
+
+.card-heading2 {
+    background: #007991; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #007991 , #78ffd6); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #007991 , #78ffd6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding: 15px;
+    margin-left: -13px;
+    margin-right: -13px;
+    margin-bottom: 10px;
+}
+
+.card-heading h3, .card-heading2 h3 {
+    text-align: center;
+    color: black;
+}
+
+.heading {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    border-bottom: 2px dotted lightgray;
+}
+
+.col-container .col-md-3 .card {
+    padding-top: 10px;
+}
+
+@media screen and (min-width: 992px) {
+    .text-alignment {
+        text-align: right;
+    }
+    .copyright-alignment {
+        text-align: left;
+    }
+    #welcome {
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .card-height {
+        height: 435px;
+    }
+}
+
+.bg-1 {
+    background-color: rgba(243,168,81, 0.5);
+}
+
+.bg-2 {
+    background-color: rgba(51, 213,197, 0.5);
+}
+
+.bg-3 {
+    background-color: rgba(225, 95, 133, 0.2);
+}
+.bg-4 {
+    background-color: rgba(225, 95, 133, 0.5);
 }

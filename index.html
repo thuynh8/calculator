@@ -2,8 +2,13 @@
 <html lang="en-US">
 <head>
     <meta charset="utf-8">
-    <title>Mortgage Calculator</title>
+    <meta name="description" content="iloannow.com" />
+    <title>iLoanNow | The Best Loan Provider You Can Trust.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,8 +19,10 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
     <script src="https://use.fontawesome.com/409e734741.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
    <nav>
@@ -27,15 +34,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                    </button>
-                   <a class="navbar-brand" href="index.html"><img class="img-responsive" src="images/topbanner1.jpg" /></a>
+                   <a class="navbar-brand" href="index.html"><p id="welcome">
+                        <span style="color:skyblue">Welcome to</span><span style="color:yellow"> iLoanNow.com</span></p></a>
                </div>
                <div class="collapse navbar-collapse" id="pageNavbar">
                    <ul class="nav navbar-nav navbar-right">
                        <li><a href="index.html" class="hvr-underline-reveal">Home</a></li>
-                       <li><a href="quote.html" class="hvr-underline-reveal">Get Quote</a></li>
-                       <li><a href="qualification.html" class="hvr-underline-reveal">Qualification</a></li>
-                       <li><a href="loan-application.html" class="hvr-underline-reveal">Apply</a></li>
-                       <li><a href="contact.html" class="hvr-underline-reveal">Contact</a></li>
+                       <li><a href="templates/quote.html" class="hvr-underline-reveal">Get Quote</a></li>
+                       <li><a href="templates/qualification.html" class="hvr-underline-reveal">Qualification</a></li>
+                       <li><a href="templates/loan-application.html" class="hvr-underline-reveal">Apply</a></li>
+                       <li><a href="tools.html" class="hvr-underline-reveal">Tools</a></li>
+                       <li><a href="templates/contact.html" class="hvr-underline-reveal">Contact</a></li>
                    </ul>
                </div>
              </div>
@@ -44,7 +53,7 @@
 
    <div class="jumbotron home-background" style="padding-top: 30px;" id="section1">
        <div class="row">
-           <form action="quote.html">
+           <form action="templates/quote.html" id="quoteform">
                <div class="col-md-3">
                </div>
                <div class="col-md-6">
@@ -53,43 +62,49 @@
                            <h3 class="text-center heading-style1">Customized Mortgage Rate Quote</h3>
                        </div>
                        <div class="panel-body">
-                           <
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="propertyvalue">Property Value <span class="red">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                        <input class="form-control" name="propertyvalue" id="propertyvalue" />
+                                        <input class="form-control input-lg" name="propertyvalue" id="propertyvalue" />
                                     </div>
+                                    <div class="errorTxt"></div>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="loanamount">Loan Amount <span class="red">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                                        <input class="form-control" name="loanamount" id="loanamount" />
+                                        <input class="form-control input-lg" name="loanamount" id="loanamount" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label for="loanpurpose">Loan Purpose <span class="red">*</span></label>
-                                    <select class="form-control" id="loanpurpose">
+                                    <select class="form-control input-lg" id="loanpurpose" name="loanpurpose">
                                         <option value="refinance">Refinance - Lower Rate/Payment</option>
                                         <option value="cashout">Refinance - Cash Out</option>
                                         <option selected value="purchase">Purchase</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label for="zipcode">Zip Code</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input class="form-control" name="zipcode" id="zipcode" />
-                                    </div>
+                                    <label for="county">County <span class="red">*</span></label>
+                                    <select class="form-control input-lg" name="county" id="county" type="text">
+                                        <option value="">Select County</option>
+                                        <option value="oc">Orange County</option>
+                                        <option value="la">Los Angeles County</option>
+                                        <option value="rs">Riverside County</option>
+                                        <option value="sb">San Bernardino County</option>
+                                        <option value="sd">San Diego County</option>
+                                        <option value="kern">Kern County</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
                             </div>
                        </div>
                        <div class="panel-footer">
-                           <button type="submit" class="btn btn-danger btn-block"><i class="fa fa-check"> GET QUOTE</i></button>
+                           <button type="submit" class="btn btn-danger btn-block" id="btn1"><i class="fa fa-check"> GET QUOTE</i></button>
                        </div>
                    </div>
                </div>
@@ -101,45 +116,87 @@
 
    <!-- Second section -->
    <div class="container text-center" id="about">
-        <h3 class="heading-style2">WHY YOU SHOULD CHOOSE US</h3>
-        <div class="row">
-            <div class="col-md-3 text-center">
-                <img class="img-responsive" style="display:inline-block" src="images/checked.svg" height="80" width="80" />
-                <p class="heading-style3">
-                    Experience
-                </p>
-                <p class="font-style1">
-                    Over 2700 loans successfully closed
-                </p>
+        <h2 class="heading-style2" style="color:dimgray;">WHY YOU SHOULD CHOOSE US</h2>
+        <div class="row col-container">
+            <div class="col-md-3 text-center" data-aos="flip-left" data-aos-once="true" data-aos-duration="1000">
+                <div class="card card-height">
+                    <div class="bg-1">
+                        <img class="img-responsive" style="opacity:0.2" src="images/discuss.jpg" />
+                    </div>
+                    <div class="card-container">
+                        <h2 class="heading-style3">Experience</h2>
+                        <p class="font-style1">
+                            Over 2700 loans successfully closed.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 text-center">
-                <img class="img-responsive" style="display:inline-block" src="images/time.svg" height="80" width="80" />
-                <p class="heading-style3">
-                    Efficiency
-                </p>
-                <p class="font-style1">
-                    Our responsive team and technology help us close most loans in 25 days or less.
-                </p>
+            <div class="col-md-3 text-center" data-aos="flip-left" data-aos-once="true" data-aos-duration="1000">
+                <div class="card card-height">
+                    <div class="bg-2">
+                        <img class="img-responsive" style="opacity:0.2" src="images/clock.jpg"/>
+                    </div>
+                    <div class="card-container">
+                        <h2 class="heading-style3">Efficiency</h2>
+                        <p class="font-style1">
+                            Our responsive team and technology help us close most loans in 25 days or less.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <img class="img-responsive" style="display:inline-block" src="images/piggy-bank.svg" height="80" width="80" />
-                <p class="heading-style3">
-                    Price
-                </p>
-                <p class="font-style1">
-                    We rely on technology to shop the best lender for you and lower our cost.  We make less per loan but earn more business from consumers.
-                </p>
+            <div class="col-md-3 text-center" data-aos="flip-left" data-aos-once="true" data-aos-duration="1000">
+                <div class="card">
+                    <div class="bg-3">
+                        <img class="img-responsive" style="opacity:0.5" src="images/bank.png" />
+                    </div>
+                    <div class="card-container">
+                        <h2 class="heading-style3">
+                            Price
+                        </h2>
+                        <p class="font-style1">
+                            We rely on technology to shop the best lender for you and lower our cost.
+                            We make less per loan but earn more business from consumers.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <img class="img-responsive" style="display:inline-block" src="images/people.svg" height="80" width="80" />
-                <p class="heading-style3">
-                    Trust
-                </p>
-                <p class="font-style1">
-                    Trust is our most important asset.  More than 80% of clients are repeated or referrals.
-                </p>
+            <div class="col-md-3 text-center" data-aos="flip-left" data-aos-once="true" data-aos-duration="1000">
+                <div class="card card-height">
+                    <div class="bg-4">
+                        <img class="img-responsive" style="opacity:0.2" src="images/handshake.jpg" />
+                    </div>
+                    <div class="card-container">
+                        <h2 class="heading-style3">
+                            Trust
+                        </h2>
+                        <p class="font-style1">
+                            Trust is our most important asset.  More than 80% of clients are repeated or referrals.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+   </div>
+
+   <div class="jumbotron" id="ad">
+       <div class="row">
+           <h2 class="heading-style2" style="color:dimgray;">CALL US NOW</h2>
+           <div class="col-md-1">
+           </div>
+           <div class="col-md-3" data-aos="fade-right" data-aos-once="true" data-aos-duration="1000">
+               <h3 class="heading-style3">Contact Us Today For More Details</h3>
+               <p class="font-style1">
+                    We are #1 Office of L.S. for 8 straight years in a row.
+                    Top 10 Largest R.E. Offices in O.C.<br />
+                    "Working 8 days a week"
+               </p>
+           </div>
+           <div class="col-md-7" data-aos="fade-left" data-aos-once="true" data-aos-duration="1000">
+               <img src="images/banner.jpg" class="img-responsive" alt="banner" id="banner" />
+           </div>
+           <div class="col-md-1">
+           </div>
+       </div>
    </div>
 
     <!-- Contact section -->
@@ -147,35 +204,43 @@
        <div class="row">
            <div class="col-md-3">
                <h4>Contact Us</h4>
-               <p>
+               <p class="contact-info">
                     <i class="fa fa-phone"> Phone: (714) 222-2229</i><br />
                     <i class="fa fa-phone"> Phone: (714) 890-9000</i><br />
-                    <i class="fa fa-fax"> Fax: (714) 895-2220</i>
-                    <i class="fa fa-envelope-o"> adrienne.nguyen@tdlendinginc.com</i>
+                    <i class="fa fa-fax"> Fax: (714) 895-2220</i> <br />
+                    <i class="fa fa-envelope-o"> thomas.dao@tdlendinginc.com</i>
                </p>
            </div>
            <div class="col-md-3">
                <h4>Locations</h4>
                <p>
                    TD Lending Inc.<br />
+                   A Division of Southland Mortgage Group<br />
                    13833 Beach Boulevard,
-                    Westminster, California CA 92683
+                    Westminster, CA 92683
                </p>
            </div>
            <div class="col-md-3">
                <h4>About Us</h4>
                <p>
-                   TD Lending Inc is your first choice for your real estate needs, whether you're making your first home purchase or refinancing an existing mortgage. We offer the best mortgage solutions for real estate investors. Grow your real estate portfolio with us. Fast, simple process. Competitive rates.
+                   <strong>CalBRE #</strong> 00958467 | <strong>NMLS #</strong> 329329
+               </p>
+               <p>
+                   iLoanNow.com is your first choice for your real estate needs,
+                   whether you're making your first home purchase or refinancing an
+                   existing mortgage. We offer the best mortgage solutions for real
+                   estate investors. Grow your real estate portfolio with us. Fast,
+                   simple process. Competitive rates.
                </p>
            </div>
            <div class="col-md-3">
                <h4>Go to</h4>
-               <p>
+               <p id="goto">
                    <a href="index.html">Home</a>
-                   <a href="quote.html">Get Quote</a>
-                   <a href="qualification.html">Qualification</a>
-                   <a href="loan-application.html">Apply</a>
-                   <a href="contact.html">Contact</a>
+                   <a href="templates/quote.html">Get Quote</a>
+                   <a href="templates/qualification.html">Qualification</a>
+                   <a href="templates/loan-application.html">Apply</a>
+                   <a href="templates/contact.html">Contact</a>
                </p>
            </div>
        </div>
@@ -183,17 +248,75 @@
    <footer>
        <div class="container">
            <div class="row">
-               <div class="col-md-6">
-                   Copyright <i class="fa fa-copyright"></i> 2017 TD Lending INC
+               <div class="col-md-6 copyright-alignment">
+                   Copyright <i class="fa fa-copyright"></i> iLoanNow.com
                </div>
-               <div class="col-md-6 text-right">
-                   <i class="fa fa-facebook-square fa-2x" style="color:#3b5998"></i>
-                   <i class="fa fa-twitter-square fa-2x" style="color:skyblue"></i>
-                   <i class="fa fa-google-plus-square fa-2x" style="color:red"></i>
-                   <i class="fa fa-linkedin-square fa-2x" style="color:#3b5998"></i>
+               <div class="col-md-6 text-alignment social-icons">
+                   <a href="https://www.facebook.com/SuperiorREgroup/" target="_blank" title="www.facebook.com/SuperiorREgroup" style="text-decoration:none">
+                       <i class="fa fa-facebook-square fa-2x" style="color:#3b5998"></i>
+                   </a>
+                   <a href="https://www.youtube.com/watch?v=H_B2raO20wE" target="_blank" style="text-decoration:none">
+                       <i class="fa fa-youtube-square fa-2x" style="color:red"></i>
+                   </a>
+                   <a href="http://www.yelp.com/biz/superior-real-estate-group-westminster" target="_blank" style="text-decoration:none">
+                       <i class="fa fa-yelp fa-2x" style="color:red;"></i>
+                   </a>
+                   <a href="#" target="_blank" style="text-decoration:none">
+                       <i class="fa fa-twitter-square fa-2x" style="color:skyblue"></i>
+                   </a>
+                   <a href="mailto:thomas_dao@yahoo.com" target="_blank" style="text-decoration:none">
+                       <i class="fa fa-google-plus-square fa-2x" style="color:red"></i>
+                   </a>
+                   <a href="#" target="_blank">
+                       <i class="fa fa-linkedin-square fa-2x" style="color:#3b5998" style="text-decoration:none"></i>
+                   </a>
                </div>
            </div>
        </div>
    </footer>
+   <script src="js/validate.min.js"></script>
+   <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+   <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+   <script>AOS.init();</script>
+   <script>
+       $(document).ready(function() {
+           $.validator.setDefaults({
+                highlight: function(element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function(element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function(error, element) {
+                    if(element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+        });
+            $('#quoteform').validate({
+                rules: {
+                    propertyvalue: {
+                        required: true,
+                        number: true
+                    },
+                    loanamount: {
+                        required: true,
+                        number: true
+                    },
+                    zipcode: {
+                        digits: true,
+                        maxlength: 5
+                    },
+                    county: {
+                        required: true
+                    }
+                }
+            });
+       });
+   </script>
 </body>
 </html>

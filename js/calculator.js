@@ -554,9 +554,8 @@ function calculatePriceAdjusters() {
 
 
 function getQuoteResultTable() {
-
     $('#getquote').click(function() {
-         $('#interesttable').show();
+        $('#interesttable').show();
 
         var termOfLoan = Number($('#numberofyears').val());
 
@@ -569,20 +568,27 @@ function getQuoteResultTable() {
         var numberOfYears = Number($("#numberofyears").val());
         var numberOfMonths = numberOfYears * 12;
 
-        for (var i=0; i < rateList.length; i++) {
+        // If LTV > 80 show LPMI section
+        var lpmiInput = $('#lpmiInput');
+        if (loanToValue > 80) {
+            lpmiInput.show();
+        } else if (loanToValue <= 80) {
+            lpmiInput.hide();
+        }
 
+        for (var i=0; i < rateList.length; i++) {
             var rateOfInterest = rateList[i];
             var monthlyInterestRatio = (rateOfInterest/100)/12;
             var top = Math.pow((1+monthlyInterestRatio),numberOfMonths);
             var bottom = top -1;
             var sp = top / bottom;
-
             var emi = ((loanAmount * monthlyInterestRatio) * sp);
 
             paymentList.push(emi);
         }
 
-        var detailDesc2 = "<thead><tr><th>-----</th><th>Interest Rate</th><th>Closing Cost</th><th>APR</th><th>Payment</th><th>Apply</th><th>Qualification</th><th>Rates Updated</thead><tbody>";
+        var detailDesc2 = "<thead><tr><th></th><th>Interest Rate</th><th>Closing Cost</th><th>APR</th>" +
+        "<th>Payment</th><th>Apply</th><th>Qualification</th><th>Rates Updated</thead><tbody>";
 
         var orderNo = 1;
         for (var j=0; j<rateList.length; j++){
@@ -596,19 +602,12 @@ function getQuoteResultTable() {
             var bottom = top -1;
             var sp = top / bottom;
             var emi = ((loanAmount * monthlyInterestRatio) * sp);
-
             var formatedEmi = Number(emi.toFixed(2)).toLocaleString();
 
-            // Calculate APR
-            var apr = (Math.pow((rateOfInterest/36500 + 1), 365) - 1) + (rateOfInterest);
-            var formatedApr = Number(apr.toFixed(2)).toLocaleString();
-            // End APR
-
             function getFinalAdjustedRate() {
-                var interestRate = rateOfInterest;
                 var creditScore = Number($('#creditscore').val());
 
-                var initialRebateRate = calculateCC(interestRate, pickedTable);
+                var initialRebateRate = calculateCC(rateOfInterest, pickedTable);
                 var adjustedRebateRate = calPriceAdRate(loanToValue, creditScore, termOfLoan);
 
                 var priceAdjustmentList = calculatePriceAdjusters();
@@ -620,11 +619,57 @@ function getQuoteResultTable() {
                 var lenderFee = 1.75;
                 var finalRebateRate = initialRebateRate - (adjustedRebateRate + totalRateAdjusters + lenderFee);
                 var rebateAmount = finalRebateRate * loanAmount / 100;
-                
+
                 return rebateAmount;
             }
 
             var rebateAmountResult = getFinalAdjustedRate();
+
+            // Calculate APR
+            var adjustedBalance;
+            if (rebateAmountResult < 0) {
+                adjustedBalance = loanAmount - rebateAmountResult;
+            } else {
+                adjustedBalance = loanAmount + rebateAmountResult;
+            }
+            var adjustedEmi = (adjustedBalance * monthlyInterestRatio) * sp;
+            var apr = (calculateAPR(loanAmount, numberOfMonths, rateOfInterest, rebateAmountResult) * 100).toFixed(2);
+
+	        function calculateAPR(loanamount, numpayments, baseannualrate, costs){
+    	    /*
+    	    By Paul Cormier - Sep 10, 2010 - http://webmasterymadesimple.com
+    	    loanamount  = the amount borrowed
+    	    numpayments = number of monthly payments e.g. 30 years = 360
+    	    baserate    = the base percentage rate of the loan. A 5.25% Annual Rate should be passed in as 0.0525 NOT 5.25
+    	    costs       = the loan closing costs e.g. origination fee, broker fees, etc.
+    	    */
+        	    var rate =  (rateOfInterest/100) / 12;
+        	    var totalmonthlypayment = ((adjustedBalance) * rate * Math.pow(1+rate,numberOfMonths)) / (Math.pow(1+rate, numberOfMonths)-1);
+                var testrate = rate;
+        	    var iteration = 1;
+        	    var testresult = 0;
+        	    //iterate until result = 0
+        	    var testdiff = testrate;
+        	    while (iteration <= 100) {
+        	        testresult = ((testrate * Math.pow(1 + testrate, numberOfMonths)) / (Math.pow(1 + testrate, numberOfMonths) - 1)) - (totalmonthlypayment / loanAmount);
+        	        if (Math.abs(testresult) < 0.0000001) break;
+        	        if (testresult < 0) testrate += testdiff;
+        	        else testrate -= testdiff;
+        	        testdiff = testdiff / 2;
+        	        iteration++;
+        	    }
+        	    testrate = testrate * 12;
+        	    return testrate.toFixed(6);
+	        }
+
+            var formatedApr;
+            if (rebateAmountResult < 0) {
+                formatedApr = apr;
+            } else {
+                formatedApr = rateOfInterest;
+            }
+            // End APR
+
             var addClassRebate = "";
             if (rebateAmountResult > 0) {
                 addClassRebate += "highlight-blue";
@@ -634,7 +679,12 @@ function getQuoteResultTable() {
 
             var formattedRebateAmount = Number(rebateAmountResult.toFixed(2)).toLocaleString();
 
-            detailDesc2 += "<tr><td>"+ orderNo +"</td><td>"+ "<a class='selectedLink'>"+ rateList[j] + "%" +"</a></td><td class='"+ addClassRebate +"'>"+ "$" + formattedRebateAmount +"</td><td>"+ formatedApr + "%" +"</td>"+ "<td>"+ "$" +formatedEmi + "</td>" +"<td><a href='loan-application.html' class='alert-link'>"+"Apply"+"</a></td><td><a href='qualification.html' class='qualified-link'>"+"Am I Qualified"+"</a></td><td>"+ "Mar 10, 2017 at 10:00 AM" +"</td></tr>";
+            detailDesc2 += "<tr><td>"+ orderNo +"</td><td>"+ "<a class='selectedLink'>"+ rateList[j] +
+                            "%" +"</a></td><td class='"+ addClassRebate +"'>"+ "$" + formattedRebateAmount +"</td><td>" +
+                            formatedApr + "%" +"</td>"+ "<td>"+ "$" +formatedEmi + "</td>" +
+                            "<td><a href='loan-application.html' class='alert-link'>"+"Apply" +
+                            "</a></td><td><a href='qualification.html?payment=" + emi.toFixed(2) + "&propertyvalue=" + propertyValue + "' class='qualified-link'>" +
+                            "Am I Qualified"+"</a></td><td>"+ "Mar 10, 2017 at 10:00 AM" + "</td></tr>";
 
             orderNo++;
         }
@@ -883,20 +933,82 @@ function getLpmiRateAdjuster(creditscore, table) {
     }
 }
 
+// function getCounty() {
+//     var zipcode = $('#zipcode').val();
+//     var geocoder = new google.maps.Geocoder();
+//     var county, city, response, result, adresses;
+//
+//     response = geocoder.geocode({'address': zipcode}, function(results, status) {
+//         if (status === 'OK') {
+//             county = results[0].address_components[2].long_name;
+//             console.log("County found is: " + county);
+//         }
+//     });
+// }
+
+// function makeAjaxCall() {
+//     $.ajax({
+//         type: "GET",
+//         url: "http://gomashup.com/json.php?fds=geo/usa/zipcode/92843",
+//         dataType: "json",
+//         jsoncallback: logme(),
+//         success: function(result) {
+//             console.log("i'm called success");
+//             console.log("Reponse: " + result);
+//         },
+//         error: function(response) {
+//             alert("Error: " + response);
+//         }
+//     });
+//     function logme() {
+//         console.log("result");
+//     }
+// }
+
 function highBalance() {
     var balance = Number($('#loanamount').val());
     var type = $('#propertytype').val();
-    var highBalance;
+    var highBalance, oneUnitLimit, twoUnitLimit, threeUnitLimit, fourUnitLimit;
+    var county = $('#county').val();
 
-    if (((type === "single") || (type === "condo") || (type="townhouse")) && (balance > 424100)) {
+    if ((county === 'oc') || (county === 'la')) {
+        oneUnitLimit = 636150;
+        twoUnitLimit = 814500;
+        threeUnitLimit = 984525;
+        fourUnitLimit = 1223475;
+    } else if ((county === 'rs') || (county === 'sb')) {
+        oneUnitLimit = 424100;
+        twoUnitLimit = 543000;
+        threeUnitLimit = 656350;
+        fourUnitLimit = 815650;
+    } else if (county === 'sd') {
+        oneUnitLimit = 612950;
+        twoUnitLimit = 784700;
+        threeUnitLimit = 948500;
+        fourUnitLimit = 1178750;
+    } else if (county === 'kern') {
+        oneUnitLimit = 424100;
+        twoUnitLimit = 543000;
+        threeUnitLimit = 656350;
+        fourUnitLimit = 815650;
+    } else {
+        oneUnitLimit = 999999999;
+        twoUnitLimit = 999999999;
+        threeUnitLimit = 999999999;
+        fourUnitLimit = 999999999;
+    }
+
+
+    if (((type === "single") || (type === "condo") || (type="townhouse")) && (balance > oneUnitLimit)) {
         return true;
-    } else if ((type === "duplex") && (balance > 543000)) {
+    } else if ((type === "duplex") && (balance > twoUnitLimit)) {
         return true;
-    } else if ((type === "triplex") && (balance > 656350)) {
+    } else if ((type === "triplex") && (balance > threeUnitLimit)) {
         return true;
-    } else if ((type === "fourplex") && (balance > 815650)) {
+    } else if ((type === "fourplex") && (balance > fourUnitLimit)) {
         return true;
     } else {
         return false;
     }
+
 }

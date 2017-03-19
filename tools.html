@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="iloannow.com" />
+    <title>iLoanNow | TD Lending Inc. - The Best Loan Provider You Can Trust.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+    <script src="https://use.fontawesome.com/409e734741.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="images/favicon.ico">
+</head>
+<body>
+    <nav>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pageNavbar">
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><p style="font-size:24px; font-weight:800; color:yellow">iLoanNow.com</p></a>
+                </div>
+                <div class="collapse navbar-collapse" id="pageNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html" class="hvr-underline-reveal">Home</a></li>
+                        <li><a href="templates/quote.html" class="hvr-underline-reveal">Get Quote</a></li>
+                        <li><a href="templates/qualification.html" class="hvr-underline-reveal">Qualification</a></li>
+                        <li><a href="templates/loan-application.html" class="hvr-underline-reveal">Apply</a></li>
+                        <li><a href="templates/contact.html" class="hvr-underline-reveal">Contact</a></li>
+                    </ul>
+                </div>
+              </div>
+         </div>
+    </nav>
+
+    <div class="container" style="margin-bottom:60px; margin-top:60px;">
+        <h2 class="form-section-title heading-bold heading-style4">Calculators</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="vertical-menu">
+                    <a href="#" class="active">How much house can I afford?</a>
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                    <a href="#">Link 4</a>
+               </div>
+            </div>
+            <div class="col-md-9">
+                <div id="option1">
+                    <h3 class="tool-heading">How much house can I afford?</h3>
+                    <p>
+                        This tool is used to compute how much house you can afford,
+                        with your maximum affordable sales price and payment amount
+                        based on the values entered for Annual Income, Interest Rate,
+                        Loan Term, Monthly Recurring Debt and Down Payment. To compute
+                        the maximum sales price and payment amount, Annual Income, Interest
+                        Rate and Loan Terms are required. Monthly Recurring Debt and Down
+                        Payment are optional. When finished, click the "Compute" button.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+   </div>
+
+    <?php include("/footer.php");?>
+
+    <!-- validate.js -->
+    <script src="../js/validate.min.js"></script>
+    <script src="../js/validateFunctions.js"></script>
+    <!-- autoNumeric.js -->
+    <script src="https://cdn.jsdelivr.net/autonumeric/2.0.0/autoNumeric.min.js"></script>
+    <!-- mask.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="../js/gmap.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            validateInputs2();
+            $('#phone').mask('(000) 000-0000');
+            $('#loanamount').autoNumeric('init');
+            $('#propertyvalue').autoNumeric('init');
+        });
+    </script>
+</body>
+</html>
